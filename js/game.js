@@ -52,7 +52,7 @@ let wall = {
     r: W, 
     u: 0 - H / 2, 
     d: H
-};update=true;
+};
 
 let player = {
     r: 15, 
@@ -77,7 +77,7 @@ function draw() {
         circPoses[circ][0] += circDirs[circ][0];
         circPoses[circ][1] += circDirs[circ][1];
         if (mouseX + player.r > circs[circ].x - circs[circ].r && mouseX - player.r < circs[circ].x + circs[circ].r && mouseY + player.r > circs[circ].y - circs[circ].r && mouseY - player.r < circs[circ].y + circs[circ].r) {
-            if (mouseUp) {
+            if (mouseUp && !startScreen) {
                 die();
             }
         }
@@ -93,7 +93,7 @@ function draw() {
         rectPoses[rect][0] += rectDirs[rect][0];
         rectPoses[rect][1] += rectDirs[rect][1];
         if (mouseX + player.r > rects[rect].x && mouseX - player.r < rects[rect].x + rects[rect].w && mouseY + player.r > rects[rect].y && mouseY - player.r < rects[rect].y + rects[rect].h) {
-            if (mouseUp) {
+            if (mouseUp && !startScreen) {
                 die();
             }
         }
@@ -107,7 +107,7 @@ function draw() {
     Wall(wall.l);
     Wall(wall.r);
     if (mouseX - player.r < wall.l + W / 2 || mouseX + player.r > wall.r) {
-        if (mouseUp) {
+        if (mouseUp && !startScreen) {
             die();
         }
     }
@@ -137,6 +137,7 @@ function draw() {
             ctx.fillStyle = colors.header;
             ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
         }
+        player.c = "#555";
     }
 }
 
@@ -159,18 +160,25 @@ function write() {
             ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
         }
     }
-}
-
-console.log(update);
-
-setInterval(function() {
+    
     if (dead && !startScreen) {
         ctx.textAlign = "center";
         ctx.font = "bold 50px Calibri";
         ctx.fillStyle = colors.header;
         ctx.fillText("Click anywhere to restart the game", W / 2, H / 2);
     }
-}, 100);
+}
+
+console.log(update);
+
+/*setInterval(function() {
+    if (dead && !startScreen) {
+        ctx.textAlign = "center";
+        ctx.font = "bold 50px Calibri";
+        ctx.fillStyle = colors.header;
+        ctx.fillText("Click anywhere to restart the game", W / 2, H / 2);
+    }
+}, 100);*/
 
 draw();
 let mainloop;
