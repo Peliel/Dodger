@@ -8,8 +8,6 @@ let x = W / 2, y = H / 2;
 
 let mouseUp = true, dead = false, startScreen = true, started = false;
 
-let version = "1.6";
-
 let close, unhide, warn;
 
 let colors = {
@@ -121,44 +119,20 @@ function draw() {
     }
 
     if (startScreen) {
-        if (update) {
-            ctx.textAlign = "center";
-            ctx.font = "bold 50px Calibri";
-            ctx.fillStyle = colors.header;
-            ctx.fillText("Hooray! There is a new update available!", W / 2, H * 0.4);
-            ctx.font = "bold 20px Calibri";
-            ctx.fillStyle = colors.play;
-            ctx.fillText("No thanks, I want to play", W / 2, H * 0.5);
-            ctx.fillStyle = colors.download;
-            ctx.fillText("Update via official download page", W / 2, H * 0.6);
-        } else {
-            ctx.textAlign = "center";
-            ctx.font = "bold 50px Calibri";
-            ctx.fillStyle = colors.header;
-            ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
-        }
+        ctx.textAlign = "center";
+        ctx.font = "bold 50px Calibri";
+        ctx.fillStyle = colors.header;
+        ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
         player.c = "#555";
     }
 }
 
 function write() {
     if (startScreen) {
-        if (update) {
-            ctx.textAlign = "center";
-            ctx.font = "bold 50px Calibri";
-            ctx.fillStyle = colors.header;
-            ctx.fillText("Hooray! There is a new update available!", W / 2, H * 0.4);
-            ctx.font = "bold 20px Calibri";
-            ctx.fillStyle = colors.play;
-            ctx.fillText("No thanks, I want to play", W / 2, H * 0.5);
-            ctx.fillStyle = colors.download;
-            ctx.fillText("Update via official download page", W / 2, H * 0.6);
-        } else {
-            ctx.textAlign = "center";
-            ctx.font = "bold 50px Calibri";
-            ctx.fillStyle = colors.header;
-            ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
-        }
+        ctx.textAlign = "center";
+        ctx.font = "bold 50px Calibri";
+        ctx.fillStyle = colors.header;
+        ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
     }
     
     if (dead && !startScreen) {
@@ -168,17 +142,6 @@ function write() {
         ctx.fillText("Click anywhere to restart the game", W / 2, H / 2);
     }
 }
-
-console.log(update);
-
-/*setInterval(function() {
-    if (dead && !startScreen) {
-        ctx.textAlign = "center";
-        ctx.font = "bold 50px Calibri";
-        ctx.fillStyle = colors.header;
-        ctx.fillText("Click anywhere to restart the game", W / 2, H / 2);
-    }
-}, 100);*/
 
 draw();
 let mainloop;
