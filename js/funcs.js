@@ -16,41 +16,6 @@ function stop() {
     clearInterval(mainloop);
 }
 
-function clickListener() {
-    if (mouseX > W / 2 - 140 && mouseX < W / 2 + 145 && mouseY > H / 2 + 48 && mouseY < H / 2 + 68) {
-        document.location.reload(true);
-        window.open("https://peliel.github.io/dodgerserver/", "_blank");
-    }
-}
-
-function posListener() {
-    if (startScreen) {
-        if (update) {
-            if (mouseX > W / 2 - 105 && mouseX < W / 2 + 105 && mouseY > H / 2 - 15 && mouseY < H / 2 + 5) {
-                colors.play = "skyblue";
-                canvas.style.cursor = "pointer";
-                draw();
-                write();
-            } else {
-                colors.play = "white";
-                draw();
-                write();
-            }
-        
-            if (mouseX > W / 2 - 140 && mouseX < W / 2 + 145 && mouseY > H / 2 + 48 && mouseY < H / 2 + 68) {
-                colors.download = "skyblue";
-                canvas.style.cursor = "pointer";
-                draw();
-                write();
-            } else {
-                colors.download = "white";
-                draw();
-                write();
-            }
-        }
-    }
-}
-
 function rnd(coeff = 1) {
     return Math.random() * coeff;
 }

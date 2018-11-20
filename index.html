@@ -18,10 +18,85 @@
             left: 0px;
             cursor: none;
         }
+
+        #infobg {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        #info {
+            position: absolute;
+            top: 2%;
+            left: 33%;
+            width: 33%;
+            height: 96%;
+            background: white;
+            border-radius: 50px;
+            text-align: center;
+        }
+
+        #header {
+            top: 2%;
+        }
+
+        #headertext {
+            position: relative;
+            top: 2%;
+            font: bold 50px Calibri;
+        }
+
+        #content {
+            position: relative;
+            font: 18px Calibri;
+        }
+
+        #close {
+            position: absolute;
+            top: 90%;
+            left: 33%;
+            width: 33%;
+            height: 7%;
+            background: orange;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 50px;
+        }
+
+        #closetext {
+            position: relative;
+            font-size: 100%;
+            top: 30%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
     <script src="js/game.js"></script>
+    <div id="infobg">
+        <div id="info">
+            <div id="header"><span id="headertext">Info</span></div>
+            <div id="content">
+                <p>Welcome to Dodger!</p>
+                <p>You are a purple ball</p>
+                <p>Move the purple ball in this game by moving your mouse.</p>
+                <p>Dodge those flying green squares and red balls.</p>
+                <p>Right wall and left wall come closer as you move.</p>
+                <p>If you touch a green square, a red ball or a wall you will die.</p>
+                <p>You will die also if you leave the game window.</p>
+                <p>May the luck be with you!</p>
+            </div>
+            <div id="close"><span id="closetext">Close</span></div>
+        </div>
+    </div>
+    <script src="js/info.js"></script>
 </body>
 </html>

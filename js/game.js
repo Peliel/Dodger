@@ -14,7 +14,8 @@ let colors = {
     header: "white", 
     play: "white", 
     download: "white", 
-    timer: "white"
+    timer: "white", 
+    info: "black"
 };
 
 let circPoses = [[rnd(W), rnd(H)], 
@@ -44,7 +45,6 @@ let missileDirs = 0
 let circs = [null, null, null, null, null];
 let rects = [null, null, null, null, null];
 
-
 let wall = {
     l: 0 - W / 2, 
     r: W, 
@@ -61,9 +61,7 @@ let time = 0;
 
 canvas.addEventListener("mouseleave", die);
 canvas.addEventListener("mousemove", move);
-canvas.addEventListener("mousemove", posListener);
 canvas.addEventListener("mousedown", start);
-canvas.addEventListener("mousedown", clickListener);
 canvas.addEventListener("mouseup", show);
 
 function draw() {
@@ -128,13 +126,6 @@ function draw() {
 }
 
 function write() {
-    if (startScreen) {
-        ctx.textAlign = "center";
-        ctx.font = "bold 50px Calibri";
-        ctx.fillStyle = colors.header;
-        ctx.fillText("Click anywhere to start the game", W / 2, H / 2);
-    }
-    
     if (dead && !startScreen) {
         ctx.textAlign = "center";
         ctx.font = "bold 50px Calibri";
