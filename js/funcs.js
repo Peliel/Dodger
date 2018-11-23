@@ -3,17 +3,54 @@ function start() {
     canvas.addEventListener("mousedown", hide);
     startScreen = false;
     canvas.style.cursor = "none";
-    mainloop = setInterval(draw, 1);
+    mainloop = setTimeout(draw, 1);
 }
 
 function resume() {
     if (!startScreen) {
-        mainloop = setInterval(draw, 1);
+        mainloop = setTimeout(draw, 1);
     }
 }
 
 function stop() {
-    clearInterval(mainloop);
+    clearTimeout(mainloop);
+}
+
+function clickListener() {
+    if (update && version != latest) {
+        if (mouseX > W / 2 - 140 && mouseX < W / 2 + 145 && mouseY > H / 2 + 48 && mouseY < H / 2 + 68) {
+            document.location.reload(true);
+            window.open("https://peliel.github.io/dodgerserver/", "_blank");
+        }
+    }
+}
+
+function posListener() {
+    if (startScreen) {
+        if (update && version != latest) {
+            if (mouseX > W / 2 - 105 && mouseX < W / 2 + 105 && mouseY > H / 2 - 15 && mouseY < H / 2 + 5) {
+                colors.play = "skyblue";
+                canvas.style.cursor = "pointer";
+                draw();
+                write();
+            } else {
+                colors.play = "white";
+                draw();
+                write();
+            }
+        
+            if (mouseX > W / 2 - 140 && mouseX < W / 2 + 145 && mouseY > H / 2 + 48 && mouseY < H / 2 + 68) {
+                colors.download = "skyblue";
+                canvas.style.cursor = "pointer";
+                draw();
+                write();
+            } else {
+                colors.download = "white";
+                draw();
+                write();
+            }
+        }
+    }
 }
 
 function rnd(coeff = 1) {
@@ -52,8 +89,8 @@ function move(e) {
     mouseY = e.clientY;
     if (!startScreen) {
         if (mouseUp) {
-            wall.l += 0.5;
-            wall.r -= 0.5;
+            wall.l += (0.5 * val4.value / 100);
+            wall.r -= (0.5 * val4.value / 100);
         } else if (!mouseUp) {
             wall.l += 0;
             wall.r -= 0;
@@ -104,7 +141,7 @@ function restart() {
         rectPoses[col][1] = rnd(H);
     }
 
-    mainloop = setInterval(draw, 1);
+    mainloop = setTimeout(draw, 1);
     canvas.style.cursor = "none";
     dead = false;
     canvas.removeEventListener("mousedown", restart);
@@ -115,9 +152,13 @@ function restart() {
 
 function die() {
     dead = true;
-    clearInterval(mainloop);
+    clearTimeout(mainloop);
     canvas.style.cursor = "context-menu";
     canvas.removeEventListener("mouseleave", die);
     canvas.addEventListener("mousedown", restart);
     write();
+    ctx.textAlign = "center";
+    ctx.font = "bold 50px Calibri";
+    ctx.fillStyle = colors.header || "white";
+    ctx.fillText("Click anywhere to restart the game", W / 2, H / 2);
 }
